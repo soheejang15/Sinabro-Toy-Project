@@ -52,6 +52,16 @@ input{
     font-family: fontAwesome;
 }
 
+#sidebar .selected-list-index{
+    width: 90%;
+    height: 6%;
+    line-height: 50px;
+    color: white;
+    padding-left: 10%;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-family: fontAwesome;
+}
+
 #sidebar #tag-title{
     width: 90%;
     height: 6%;
@@ -131,6 +141,14 @@ input{
     height: 75PX;
     border-bottom: solid #f0f0f7 2px;
     position: relative;
+}
+
+#message-list-container #message-list .selected-message-content{
+    width: 100%;
+    height: 75PX;
+    border-bottom: solid #f0f0f7 2px;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #message-list-container #message-list .message-content .name{
