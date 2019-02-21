@@ -1,0 +1,217 @@
+html,
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+i{
+    all: unset;
+    margin-right: 8px;
+}
+
+ul{
+    all: unset;
+    cursor: pointer;
+}
+
+input{
+    all: unset;
+    display: inline;
+}
+
+#sidebar{
+    display: inline-block;
+    flex: 1;
+    height: 100%;
+    background-color: #43425d;
+}
+
+#sidebar #title{
+    width: 90%;
+    height: 8%;
+    padding-left: 10%;
+    color: white;
+    font-size: 20px;
+    line-height: 70px;
+    font-weight: bold;
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#sidebar .list-index{
+    width: 90%;
+    height: 6%;
+    line-height: 50px;
+    color: white;
+    padding-left: 10%;
+    background-color: rgba(0, 0, 0, 0);
+    font-family: fontAwesome;
+}
+
+#sidebar #tag-title{
+    width: 90%;
+    height: 6%;
+    padding-left: 10%;
+    display: flex;
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#sidebar #tag-title #text{
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#sales{
+    color: #a3a0fb;
+}
+
+#marketing{
+    color: #3b86ff;
+}
+
+#design{
+    color: #ff6565;
+}
+
+#frontend{
+    color: #7865ff
+}
+
+#sidebar .list-index .fas.fa-circle{
+    font-size: 12px;
+    margin-right: 15px;
+}
+
+.content-container{
+    display: inline-flex;
+    flex: 6;
+    height: 100%;
+    background-color: white;
+}
+
+#message-list-container{
+    flex: 1;
+    border-right: solid #f0f0f7 2px;
+}
+
+#message-list-container #search-container{
+    height: 10%;
+    border-bottom: solid #f0f0f7 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fas.fa-search{
+    font-family: fontAwesome;
+    color: #43425d;
+    font-size: 20px;
+}
+
+#message-list-container #search-container #message-search{
+    width: 70%;
+    text-align: center;
+}
+
+#message-list-container #message-list{
+    height: 90%;
+    overflow: auto;
+}
+
+
+#message-list-container #message-list .message-content{
+    width: 100%;
+    height: 75PX;
+    border-bottom: solid #f0f0f7 2px;
+    position: relative;
+}
+
+#message-list-container #message-list .message-content .name{
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    top: 18%;
+    left: 10%;
+}
+
+#message-list-container #message-list .message-content .date{
+    font-size: 14px;
+    position: absolute;
+    top: 25%;
+    right: 10%;
+}
+
+#message-list-container #message-list .message-content .title{
+    font-size: 17px;
+    position: absolute;
+    bottom: 18%;
+    left: 10%;
+}
+
+#selected-message{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+#selected-message #info{
+    border-bottom: solid #f0f0f7 2px;
+    flex: 1;
+    position: relative;
+}
+
+#selected-message #info #tag{
+    display: inline-block;
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    background-color: #a3a0fb;
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: bold;
+    top: 20%;
+    left: 10%;
+}
+
+#selected-message #info #title{
+    position: absolute;
+    top: 20%;
+    left: 21%;
+    font-size: 23px;
+}
+
+#selected-message #info #name{
+    position: absolute;
+    bottom: 30%;
+    left: 10%;
+    font-size: 20px;
+}
+
+#selected-message #info #date{
+    position: absolute;
+    bottom: 30%;
+    right: 10%;
+}
+
+#selected-message #text-container{
+    flex: 3;
+    position: relative;
+}
+
+#selected-message #text-container #text{
+    display: inline-block;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    max-height: 80%;
+}
