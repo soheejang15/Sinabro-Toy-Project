@@ -20,7 +20,7 @@ const mailData = [
     title: 'sdjfsdf',
     text: "Dfsfds sdfs sadfadfsdf",
     tag: "",
-    img: "salmon",
+    img: "green",
   }, {
     from: "David James",
     date: "2018-03-02",
@@ -61,6 +61,17 @@ const mailData = [
   },
 ]
 
+// node 추가 및 속성 지정 함수
+function domControl(containerName, tag, id, className, parrentNode, text, backgroundColor) {
+  containerName = document.createElement(tag);
+  if(id) containerName.setAttribute("id", id);
+  if(className) containerName.setAttribute("class", className);
+  if(text) containerName.textContent = text;
+  if(backgroundColor) {
+    containerName.style.backgroundColor = backgroundColor;
+  }
+  parrentNode.appendChild(containerName);
+}
 
 
 // 사이드 바 클릭 이벤트 리스너 등록
@@ -78,27 +89,30 @@ clickSidebarIndex.addEventListener('click', function (e) {
   //let theIndexTitle = document.getElementById('index-title');
 
   theContentContainer.removeChild(document.getElementById('content'));
+  theContentContainer.removeChild(document.getElementById('index-title'));
   switch (currentContent) {
     case 'index-home':
-      let home = document.createElement("div");
-      home.setAttribute("id", "content");
-      home.textContent = "jkdsl";
-      theContentContainer.appendChild(home);
+      let homeTitle;
+      domControl(homeTitle, "p", "index-title", false, theContentContainer, "Home", false);
+      let home;
+      domControl(home, "div", "content", false, theContentContainer, "home", false);
       break;
     case 'index-customers':
-      let customers = document.createElement("div");
-      customers.setAttribute("id", "content");
-      customers.textContent = "customers";
-      theContentContainer.appendChild(customers);
+      let customersTitle;
+      domControl(customersTitle, "p", "index-title", false, theContentContainer, "Customers", false);
+      let customers;
+      domControl(customers, "div", "content", false, theContentContainer, "customers", false);
       break;
     case 'index-inbox':
+      let inboxTitle;
+      domControl(inboxTitle, "p", "index-title", false, theContentContainer, "Inbox", false);
       theContentContainer.appendChild(theContent);
       break;
     case 'index-settings':
-      let settings = document.createElement("div");
-      settings.setAttribute("id", "content");
-      settings.textContent = "settings";
-      theContentContainer.appendChild(settings);
+    let settingsTitle;
+      domControl(settingsTitle, "p", "index-title", false, theContentContainer, "Settings", false);
+      let settings;
+      domControl(settings, "div", "content", false, theContentContainer, "settings", false);
       break;
   }
 });
@@ -117,6 +131,8 @@ document.getElementById('number-frontend').textContent = numTag.frontend;
 
 // 메일 리스트 
 for (let i in mailData) {
+  let currentSmallData = mailData[i];
+
   let mailContent = document.createElement("li");
   mailContent.setAttribute("class", "message-content");
   mailContent.setAttribute("id", i);
@@ -129,7 +145,6 @@ for (let i in mailData) {
   mailContent.appendChild(mailTag);
 
   let tagColor = document.getElementById(i + "Tag");
-  console.log(tagColor);
   switch (mailData[i].tag) {
     case "sales":
       tagColor.className += '-sales';
@@ -144,29 +159,21 @@ for (let i in mailData) {
       tagColor.className += '-frontend';
       break;
   }
-  console.log(tagColor.className);
 
   let container = document.createElement("div");
   mailContent.appendChild(container);
   container.style.display = 'inline-block';
   container.style.position = 'relative';
 
-  let mailName = document.createElement("span");
-  mailName.setAttribute("class", "name");
-  mailName.textContent = mailData[i].from;
+  let mailName;
+  domControl(mailName, "span",false, "name", container, currentSmallData.from, false);
 
-  let mailDate = document.createElement("span");
-  mailDate.setAttribute("class", "date");
-  mailDate.textContent = mailData[i].date;
+  let mailDate;
+  domControl(mailDate, "span", false, "date", mailContent, currentSmallData.date, false);
 
-  let mailTitle = document.createElement("div");
-  mailTitle.setAttribute("class", "title");
-  mailTitle.textContent = mailData[i].title;
+  let mailTitle;
+  domControl(mailTitle, "div", false, "title", container, currentSmallData.title, false);
 
-
-  container.appendChild(mailName);
-  container.appendChild(mailTitle);
-  mailContent.appendChild(mailDate);
 
 
 }
@@ -175,6 +182,9 @@ for (let i in mailData) {
 let selectMessageContent = document.querySelector('#message-list');
 let messageFlag = false;
 selectMessageContent.addEventListener('click', function (e) {
+
+  let currentMailData = mailData[e.target.id];
+
   if (messageFlag) document.querySelector(".selected-message-content").className = "message-content";
   document.getElementById(e.target.id).className = "selected-message-content";
   messageFlag = true;
@@ -189,42 +199,33 @@ selectMessageContent.addEventListener('click', function (e) {
   let upperBox = document.createElement("div");
   upperBox.setAttribute("class", "upper-box");
 
-  if (mailData[e.target.id].tag !== '') {
-    let theTag = document.createElement("div");
-    theTag.setAttribute("id", mailData[e.target.id].tag);
-    theTag.textContent = mailData[e.target.id].tag;
-    upperBox.appendChild(theTag);
+  // 선택된 메일 태그 표시
+  if (currentMailData.tag !== '') {
+    let theTag;
+    domControl(theTag, "div", currentMailData.tag, false, upperBox, currentMailData.tag, false);
   }
 
-  let theTitle = document.createElement("span");
-  theTitle.setAttribute("id", "title");
-  theTitle.textContent = mailData[e.target.id].title;
-  upperBox.appendChild(theTitle);
+  // 선택된 메일 타이틀 표시
+  let theTitle;
+  domControl(theTitle, "span", "title", false, upperBox, currentMailData.title, false);
 
   theUserBox.appendChild(upperBox);
 
   let lowerBox = document.createElement("div");
   lowerBox.setAttribute("class", "lower-box");
 
-  let theImg = document.createElement("div");
-  theImg.setAttribute("id", "img");
-  theImg.style.backgroundColor = mailData[e.target.id].img;
-  lowerBox.appendChild(theImg);
+  let theImg;
+  domControl(theImg, "div", "img", false, lowerBox, false, currentMailData.img);
 
-  let theName = document.createElement("span");
-  theName.setAttribute("id", "name");
-  theName.textContent = mailData[e.target.id].from;
-  lowerBox.appendChild(theName);
 
-  let theDate = document.createElement("span");
-  theDate.setAttribute("id", "date");
-  theDate.textContent = mailData[e.target.id].date;
-  lowerBox.appendChild(theDate);
+  let theName;
+  domControl(theName, "span", "name", false, lowerBox, currentMailData.from, false);
 
-  let to = document.createElement("div");
-  to.setAttribute("id", "to");
-  to.textContent = "to me";
-  lowerBox.appendChild(to);
+  let theDate;
+  domControl(theDate, "span", "date", false, lowerBox, currentMailData.date, false);
+
+  let to;
+  domControl(to, "div", "to", false, lowerBox, "to me", false);
 
   theUserBox.appendChild(lowerBox);
 
@@ -232,9 +233,6 @@ selectMessageContent.addEventListener('click', function (e) {
   let theTextContent = document.querySelector("#text #content");
   theTextBox.removeChild(theTextContent);
 
-  let theText = document.createElement("p");
-  theText.setAttribute("id", "content");
-  theText.textContent = mailData[e.target.id].text;
-
-  theTextBox.appendChild(theText);
+  let theText;
+  domControl(theText, "p", "content", false, theTextBox, currentMailData.text,false);
 });
