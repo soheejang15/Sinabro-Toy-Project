@@ -54,7 +54,8 @@ input{
 }
 
 #sidebar .index-text{
-    display: inline-block;  
+    display: inline-block;
+    font-size: 1.2vw;  
 }
 
 #sidebar .mark{
@@ -192,9 +193,9 @@ input{
     all: unset;
     display: block;
     border-bottom: solid #f0f0f7 2px;
-    padding: 5% 10%;
+    padding: 2% 10%;
     cursor: pointer;
-    height: 6%;
+    height: 10%;
     position: relative;
 }
 
@@ -202,27 +203,28 @@ input{
     all: unset;
     display: block;
     border-bottom: solid #f0f0f7 2px;
-    padding: 5% 10%;
+    padding: 2% 10%;
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    height: 6%;
+    height: 10%;
     position: relative;
 }
 
 #message-list-container #message-list .name{
     font-weight: bold;
+    font-size: 1.2vw;
 }
 
 #message-list-container #message-list .date{
     float: right;
-    font-size: 12px;
+    font-size: 1vw;
     position: absolute;
     right: 0;
     margin-right: 10%;
 }
 
 #message-list-container #message-list .text{
-    font-size: 14px;
+    font-size: 1.1vw;
 }
 
 #content #selected-message{
@@ -374,3 +376,8 @@ input{
     left: 0;
     top: 0;
 }
+
+#text #content{
+  background-color: white;
+}
+
